@@ -95,7 +95,7 @@ static void MX_ADC1_Init(void) {
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_TRGO;
-  hadc1.Init.NbrOfConversion = 3;
+  hadc1.Init.NbrOfConversion = 1; // One conversion Per TIM3 TRGO. ADC INT Callback happens When DMA completes three transfers. 
   HAL_ADC_Init(&hadc1);
 
 	/**Configure Regular Channel
@@ -135,7 +135,7 @@ static void MX_TIM3_Init(void) {
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 63999;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 1999;
+  htim3.Init.Period = 999; // 1sec update
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   HAL_TIM_Base_Init(&htim3);
 
